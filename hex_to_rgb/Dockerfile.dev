@@ -1,0 +1,27 @@
+FROM golang
+
+RUN mkdir -p /go/src/github.com/marcpar/HextoRGB
+
+#copy develpment 
+ADD ./hex_to_rgb /go/src/github.com/marcpar/HextoRGB/hex_to_rgb
+
+# install delevepment tools
+RUN go get  github.com/canthefason/go-watcher
+RUN go install github.com/canthefason/go-watcher/cmd/watcher
+RUN go get github.com/go-playground/colors
+
+# change working directory
+WORKDIR /go/src/github.com/marcpar/HextoRGB/hex_to_rgb
+
+
+ENV GO111MODULE=on
+RUN printenv GO111MODULE
+RUN go mod download
+
+
+#RUN go get  -t -v ./...
+
+
+
+
+ENTRYPOINT  watcher -run github.com/marcpar/HextoRGB/hex_to_rgb/cmd  -watch github.com/marcpar/HextoRGB/hex_to_rgb

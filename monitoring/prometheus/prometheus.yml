@@ -1,0 +1,24 @@
+global:
+  scrape_interval:     15s # By default, scrape targets every 15 seconds.
+  external_labels:
+    monitor: 'monitor'
+
+scrape_configs:
+  - job_name: 'prometheus'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['localhost:9090']
+        labels:
+          group: 'local'
+
+  - job_name: 'hextorgb'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['hex_to_rgb:8080']
+        labels:
+          group: 'rgb'
+    
+  - job_name: cadvisor
+    scrape_interval: 5s
+    static_configs:
+    - targets: [cadvisor:8080]

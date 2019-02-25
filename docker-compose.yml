@@ -1,0 +1,44 @@
+version: "2"
+services:
+  hex_to_rgb:
+    build:
+      context: .
+      dockerfile: hex_to_rgb/Dockerfile.dev
+    container_name: hex_to_rgb
+    ports: 
+      - 8080:8080
+      - 8081:8081
+    restart: always
+    volumes:
+    - .:/go/src/github.com/marcpar/HextoRGB
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+  grafana:
+    image: grafana/grafana
+    ports:
+      - 3000:3000
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=password
+    volumes:
+      - $PWD/extra/grafana_db:/var/lib/grafana grafana/grafana
+  cadvisor:
+    image: google/cadvisor:latest
+    container_name: cadvisor
+    ports:
+    - 8090:8080
+    volumes:
+    - /:/rootfs:ro
+    - /var/run:/var/run:rw
+    - /sys:/sys:ro
+    - /var/lib/docker/:/var/lib/docker:ro
+    depends_on:
+    - redis
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+    - 6379:6379
