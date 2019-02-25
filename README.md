@@ -74,7 +74,9 @@ Metrics are available in grafana but you have to use docker-compose up  -d
   - [cadvisor - for profiling docker images port:8082](localhost:8082)
   - [prometheus - monitoring port :9090](localhost:9090)
   
-
+Grafana:
+   username: admin
+   password: password
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
