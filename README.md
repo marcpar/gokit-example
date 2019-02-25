@@ -75,8 +75,19 @@ Metrics are available in grafana but you have to use docker-compose up  -d
   - [prometheus - monitoring port :9090](localhost:9090)
   
 Grafana:
-   username: admin
-   password: password
+
+   - username: **admin**
+   - password: **password**
+
+## GO PROCESS
+![Alt text](go-process.jpg?raw=true "GO process")
+
+## Cadvisor
+![Alt text](profiling.jpg?raw=true "GO process")
+
+## prometheus
+![Alt text](prometheus.jpg?raw=true "GO process")
+
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
