@@ -4,7 +4,7 @@ import (
 	"context"
 
 	log "github.com/sirupsen/logrus"
-	"gopkg.in/go-playground/colors.v1"
+	colors "gopkg.in/go-playground/colors.v1"
 )
 
 // HexToRgbService describes the service.
@@ -18,9 +18,9 @@ type basicHexToRgbService struct{}
 func (b *basicHexToRgbService) Transform(ctx context.Context, s string) (rs string, err error) {
 	// TODO implement the business logic of Trasform
 
-	color, err := colors.ParseHEX(s)
-	log.Info("the color is ", color)
-	return rs, err
+	color, err := colors.ParseHEX("#" + s)
+	log.Infoln("the color is", color, s)
+	return color.ToRGB().String(), err
 }
 
 // NewBasicHexToRgbService returns a naive, stateless implementation of HexToRgbService.

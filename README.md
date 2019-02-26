@@ -61,13 +61,17 @@ go run cmd/main.go
 
 ```
 
-## logging development
+remove the hashtag(#) when requesting a url 
+
+http://localhost:8081/transform?s=FFFF00 example
+
+## Logging Development
 
 ```docker
 docker-compose logs -f hex_to_rgb 
 ```
 
-## metrics
+## Metrics
 
 Metrics are available in grafana but you have to use docker-compose up  -d 
   - [grafana - visualization port :3000](localhost:3000)

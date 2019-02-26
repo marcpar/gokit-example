@@ -50,7 +50,8 @@ func makeTransformHandler(m *mux.Router, endpoints endpoint.Endpoints, options [
 // decodeTransformRequest is a transport/http.DecodeRequestFunc that decodes a
 // JSON-encoded request from the HTTP request body.
 func decodeTransformRequest(_ context.Context, r *http1.Request) (interface{}, error) {
-	req := endpoint.TransformRequest{}
+	// req := endpoint.GetRequest{}
+	req := endpoint.TransformRequest{S: r.URL.Query().Get("s")}
 
 	//err := endpoint.TransformRequest{}
 	return req, nil
